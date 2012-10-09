@@ -79,7 +79,7 @@ mult_loop_3:
 	mpyf R0,R7  ; A(i,j)*B(j,k)
 	
 	bv error_2_0x04			; check for floating point overflow
-	buf error_2_0x04		; check for floating point underflow
+	buf error_2_0x05		; check for floating point underflow
 	
 	pop AR0
 	pop R1
@@ -88,7 +88,7 @@ mult_loop_3:
 	addf R7,R0  ; sum = A(i,j)*B(j,k)
 	
 	bv error_2_0x04			; check for floating point overflow
-	buf error_2_0x04		; check for floating point underflow
+	buf error_2_0x05		; check for floating point underflow
 	
 	addi 1,R5   ; incrementing loop_3's counter
 	cmpi R5,R1  ; comparing for loop_3's remaning iteration 
@@ -177,7 +177,7 @@ add_loop:
 	addf3 *+AR0(IR0),*+AR1(IR0),R2  ; C(i) = A(i) + B(i)
 	
 	bv error_2_0x04			; check for floating point overflow
-	buf error_2_0x04		; check for floating point underflow
+	buf error_2_0x05		; check for floating point underflow
 	
 	stf R2,*+AR2(IR0) ; writing result back to matrix C
 	
@@ -220,7 +220,7 @@ sub_loop:
 	subf3 *+AR1(IR0),*+AR0(IR0),R2  ; C(i) = A(i) - B(i)
 
 	bv error_2_0x04			; check for floating point overflow
-	buf error_2_0x04		; check for floating point underflow
+	buf error_2_0x05		; check for floating point underflow
 
 	stf R2,*+AR2(IR0) ; writing result back to matrix C
 	
@@ -235,10 +235,15 @@ error_2_0x03:
 	retsu	
 	
 error_2_0x04:		
-	ldi 4,R4		; common error handling floating point underflow and overflow for  
+	ldi 4,R4		; common error handling floating point overflow for  
 	sti R4,@error_2 ; functions of multiplication, addition and subtraction
 	retsu
 
+
+error_2_0x05:		
+	ldi 5,R4		; common error handling floating point underflow for  
+	sti R4,@error_2 ; functions of multiplication, addition and subtraction
+	retsu
 
 ;=========================================================================================
 
