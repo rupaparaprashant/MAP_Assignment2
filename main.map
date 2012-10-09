@@ -1,0 +1,11 @@
+ENTRY(MAIN)
+
+SECTIONS
+{
+	. = 0x800000;
+	.data : { *(data) }
+	. = 0x801000;
+	.bss : { *(bss) }
+	. = 0x809800;
+	.text : { *(.text) }
+}
