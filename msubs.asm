@@ -9,7 +9,7 @@
 	.global mneg
 	.global mtrn
 	.global mmult
-	
+	.global error_2
 	
 	.data
 
