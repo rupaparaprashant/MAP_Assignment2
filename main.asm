@@ -66,7 +66,7 @@ array4:	.word	array4
 
 MAIN:
 	ldp	@array1
-	ldi	@array1, AR0
+	ldi	@array3, AR0
 	ldi @array3, AR1
 	ldi @array4, AR2
 	
@@ -77,11 +77,11 @@ MAIN:
 	;ldf 9.0,R3
 	;call setnum_1
 	
-	call mmult
+	;call mmult
 	;call madd
 	;call msub
 	;call mneg
-	;call mtrn
+	call mtrn
 	bg:	br	bg
 
 	.end

@@ -8,6 +8,7 @@
 	.global setnum_2
 	.global getnum_1
 	.global setnum_1
+	.global error_1
 	
 	.data
 
